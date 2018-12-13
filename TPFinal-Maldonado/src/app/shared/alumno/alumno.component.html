@@ -21,7 +21,7 @@
               
             </form>-->
           
-            <form [formGroup]="formulario" >
+            <form [formGroup]="formulario" (ngSubmit)="onSubmit(formulario.value)">
                 
               <div class="form-row">
                   <div class="form-group col-6">
@@ -30,7 +30,7 @@
                   </div>
                   <div class="form-group col-6">
                     <label for="apellido">Apellido</label>
-                    <input type="password" class="form-control" id="apellido" placeholder="Apellido" formControlName="apellido">
+                    <input type="text" class="form-control" id="apellido" placeholder="Apellido" formControlName="apellido">
                   </div>
                 </div>
                 
@@ -40,13 +40,8 @@
                     <div class="form-group col-4">
                         <label for="TipoDocumento">Tipo Documento</label>
                         <select id="TipoDocumento" class="form-control" formControlName="tipo_doc">
-                            <option selected>Tipo...</option>
-                            <option >LE</option>
-                            <option >LC</option>
-                            <option >DNI</option>
-                            <option >Pasaporte</option>
-                            <option >CI</option>
-                          </select>
+                                <option *ngFor="let val of EDocumento">{{val}}</option>
+                        </select>
                       </div>
             
                   <div class="form-group col-4">
