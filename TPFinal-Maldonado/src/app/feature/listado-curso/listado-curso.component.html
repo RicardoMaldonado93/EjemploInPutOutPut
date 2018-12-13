@@ -1,0 +1,11 @@
+<div style="align-self: center; " class="col-xl-6">
+        <div class= 'card' style="height:auto;">
+                <div class ='card-header bg-light' ><h2>Listado de Cursos</h2></div>
+                <div class='card-body card-columns' style="font-size: 18px">
+                    <li *ngFor="let curso of ListaCursos">
+                       <!-- <span (click)="onSelect(curso.id)">{{ curso.titulo  }}</span>-->
+                        <a [routerLink]="['/curso', curso.id]">{{ curso.titulo  }}</a>
+                    </li>
+                </div>
+        </div>
+    </div>

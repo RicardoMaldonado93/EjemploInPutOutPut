@@ -1,0 +1,106 @@
+<div class="col-xl-12"  >
+  <div class= 'card' style='height:auto; width: 50%;'>
+    <div class = 'card-header' ><h2 style="font-size:25px">Alumno</h2></div>
+      <div class='card-body' style="font-size:14px;">  
+          <!-- <li>Nombre: {{nombre}}</li>
+            <li>Apellido: {{apellido}}</li>
+            <li>DNI: {{dni}}</li>
+            <li>Legajo: {{legajo}}</li>
+            <li>Curso: {{curso}}</li>
+            -->
+
+            <!--<form  [formGroup]="formulario" class="form-inline">
+              
+                <li>Apellido: <input formControlName="nombre"></li>
+                <li>Fecha de Nacimiento: <input formControlName="nombre"></li>
+                <li>Tipo Documento: <input formControlName="nombre"></li>
+                <li>Nro Documento: <input formControlName="nombre"></li>
+                <li>¿Comunidad UTN?: <input formControlName="nombre"></li>
+                <li>Legajo UTN: <input formControlName="nombre"></li>
+                <li>Inscripcion al Curso : <input formControlName="nombre"></li>
+              
+            </form>-->
+          
+            <form [formGroup]="formulario" >
+                
+              <div class="form-row">
+                  <div class="form-group col-6">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" placeholder="Nombre" formControlName="nombre">
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="apellido">Apellido</label>
+                    <input type="password" class="form-control" id="apellido" placeholder="Apellido" formControlName="apellido">
+                  </div>
+                </div>
+                
+                
+                <div class="form-row">
+                    
+                    <div class="form-group col-4">
+                        <label for="TipoDocumento">Tipo Documento</label>
+                        <select id="TipoDocumento" class="form-control" formControlName="tipo_doc">
+                            <option selected>Tipo...</option>
+                            <option >LE</option>
+                            <option >LC</option>
+                            <option >DNI</option>
+                            <option >Pasaporte</option>
+                            <option >CI</option>
+                          </select>
+                      </div>
+            
+                  <div class="form-group col-4">
+                    <label for="nroDocumento">Nro Documento</label>
+                    <input type="text" class="form-control" id="nroDocumento" placeholder="Nro documento" formControlName="nro_doc">
+                  </div>
+                
+                  <div class="form-group col-4">
+                      <label for="fechaNacimiento">Fecha de nacimiento</label>
+                      <input type="date" class="form-control" id="fechaNacimiento" value="1999-01-01" formControlName="fecha_nacimiento">
+                    </div>
+                
+                  
+                  
+                </div>
+            
+                <div class=" form-row"  >
+                  
+                    <div class="form-group col-6">
+                        <label for="tipoCurso">Inscripcion al curso</label>
+                        <select id="tipoCurso" class="form-control" formControlName="curso">
+                            <option selected>Curso...</option>
+                            <option >Angular</option>
+                            <option >Linux</option>
+                            <option >Rest</option>
+                          </select>
+                      </div>
+                </div>
+                
+                <div class=" form-row">
+                  
+                    <div class="form-group " >
+                          
+                        <div class='form-inline'>
+                          
+                          <div class="col-auto ">
+                              <div class="custom-control custom-checkbox mt-3  " >
+                                <input type="checkbox" class="custom-control-input  checkbox-primary" id="customControlAutosizing" formControlName="comunidad" >
+                                <label class="custom-control-label" for="customControlAutosizing">¿Comunidad UTN?</label>
+                              </div>
+                            </div>
+
+                            <div class="form-inline mt-3" >
+                                <input type="text" class="form-control" id="nroLegajo" placeholder="Nro Legajo" hidden="true" formControlName="leg_utn">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-row mt-5"  >
+                  <button style="font-size:15px" type="submit" class="btn btn-primary">Inscribirse</button>
+                </div>
+        
+        </form>
+      </div>
+  </div>
+</div>
