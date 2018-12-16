@@ -39,8 +39,8 @@
                     
                     <div class="form-group col-4">
                         <label for="TipoDocumento">Tipo Documento</label>
-                        <select id="TipoDocumento" class="form-control" formControlName="tipo_doc">
-                                <option *ngFor="let val of EDocumento">{{val}}</option>
+                        <select id="TipoDocumento" class="form-control" formControlName="tipo_doc" >
+                                <option *ngFor="let val of EDocumento" selected >{{val}}</option>
                         </select>
                       </div>
             
@@ -63,10 +63,8 @@
                     <div class="form-group col-6">
                         <label for="tipoCurso">Inscripcion al curso</label>
                         <select id="tipoCurso" class="form-control" formControlName="curso">
-                            <option selected>Curso...</option>
-                            <option >Angular</option>
-                            <option >Linux</option>
-                            <option >Rest</option>
+                            <option selected>seleccione curso...</option>
+                            <option *ngFor="let curso of ListaCursos">{{curso}}</option>
                           </select>
                       </div>
                 </div>
