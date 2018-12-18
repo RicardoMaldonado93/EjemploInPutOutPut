@@ -92,16 +92,14 @@
                               </div>
                             </div>
 
-                              <div *ngIf="com_utn" class="form-inline mt-3" >
-                                  <input type="text" class="form-control"  placeholder="Nro Legajo" name="leg_utn" #leg="ngModel" maxlength="8" ngModel required>
+                              <div *ngIf="com_utn" class="form-inline mt-3">
+                                  <input type="text" class="form-control"  placeholder="Nro Legajo"  style = "text-align: center" mask="000000-00" name="leg_utn" #leg="ngModel" minlength="8" maxlength="9" ngModel required>
                                   
-                                  <div *ngIf="leg?.errors && leg.touched" class="error">
-                                      *Se requiere legajo
+                                  <div *ngIf="leg?.errors && leg.errors?.minlength && leg.touched" class="error">
+                                      *Se requiere un legajo valido
                                   </div>
-                                  <div *ngIf="leg.errors?.maxlength && leg.touched" class="error">
-                                      *Maximo 8 caracteres
-                                  </div>
-                                
+                                  
+
                               </div>
                             
                         </div>

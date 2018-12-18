@@ -36,7 +36,7 @@ export class AlumnoComponent implements OnInit {
         nro_doc: [null, Validators.compose([Validators.required, Validators.maxLength(8)])],
         fecha_nacimiento :[null, Validators.required],
         comunidad:[null],
-        leg_utn:['XXXXXX-XX', Validators.required],
+        leg_utn:[null, Validators.required],
         curso:[null, Validators.required],
       })
   }
