@@ -4,7 +4,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EnumTipoDocumento } from 'src/app/model/enums/enum-tipo-documento.enum';
 import { CursoService } from 'src/app/core/service/curso.service';
-import { ICurso } from 'src/app/model/interfaces/icurso';
+
+
 
 @Component({
   selector: 'app-alumno',
@@ -41,6 +42,7 @@ export class AlumnoComponent implements OnInit {
         comunidad:[this.com_utn],
         leg_utn:[null,  Validators.compose([Validators.maxLength(8), Validators.minLength(8)])],
         curso:[null, Validators.required],
+        montoTotal:[null],
       })
   }
 
@@ -50,16 +52,26 @@ export class AlumnoComponent implements OnInit {
     
   }
 
-  get f() { return this.inscripcion.controls; }
 
   /*onSubmit({ value, valid }: { value: IAlumno, valid: boolean }){
 
     console.log(value, valid);
     
   }*/
+
   onSubmit(value){
     this.NuevoAlumno = <IAlumno>value;
+    let monto;
+    this.service.getCurso().subscribe( resp => { 
+      let Curso = resp.body.find( curso => curso.titulo == this.NuevoAlumno.curso); 
+      
+      if(this.com_utn){
+        this.NuevoAlumno.montoTotal = Curso.precio - (Curso.precio*0.2);
+        console.log( this.NuevoAlumno.montoTotal);
+      }   
+  });
     console.log(this.NuevoAlumno);
+
   }
  
 
