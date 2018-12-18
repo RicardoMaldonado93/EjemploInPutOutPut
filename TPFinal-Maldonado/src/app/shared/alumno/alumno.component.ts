@@ -1,9 +1,10 @@
 import { Component, OnInit, Input, Output} from '@angular/core';
 import { IAlumno } from '../../model/interfaces/ialumno';
 import { ActivatedRoute, Params } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { EnumTipoDocumento } from 'src/app/model/enums/enum-tipo-documento.enum';
 import { CursoService } from 'src/app/core/service/curso.service';
+import { Observable, Subscriber } from 'rxjs';
 
 
 
@@ -19,6 +20,7 @@ export class AlumnoComponent implements OnInit {
 
   @Output() NuevoAlumno:IAlumno;
 
+  observable = new Observable( subscriber =>);
   submitted:boolean = false;
   com_utn:Boolean = false;
   inscripcion:FormGroup;
@@ -33,8 +35,8 @@ export class AlumnoComponent implements OnInit {
 
      // console.log(this.com_utn);
 
-      this.inscripcion = fb.group({
-        nombre:[null, Validators.required],
+      /*this.inscripcion = fb.group({
+        nombre:[null, Validators.required, Validators.pattern('[a-zA-Z ]*')],
         apellido:[null, Validators.required],
         tipo_doc:[null, Validators.required],
         nro_doc: [null, Validators.compose([Validators.required, Validators.minLength(8)])],
@@ -43,12 +45,24 @@ export class AlumnoComponent implements OnInit {
         leg_utn:[null,  Validators.compose([Validators.maxLength(8), Validators.minLength(8)])],
         curso:[null, Validators.required],
         montoTotal:[null],
-      })
+      })*/
   }
 
   ngOnInit() {
 
     this.service.getCurso().subscribe( resp => { resp.body.filter( curso => this.ListaCursos.push(curso.titulo));});
+    this.inscripcion = new FormGroup({
+      
+      nombre: new FormControl('',[Validators.required, Validators.pattern('[a-zA-Z ]*')]),
+      apellido: new FormControl('',[Validators.required,Validators.pattern('[a-zA-Z ]*')]),
+      tipo_doc: new FormControl('', [Validators.required]),
+      nro_doc: new FormControl('',[ Validators.compose([Validators.required, Validators.minLength(8)])]),
+      fecha_nacimiento : new FormControl('',[ Validators.required]),
+      comunidad: new FormControl(this.com_utn),
+      leg_utn: new FormControl('', [ Validators.compose([Validators.maxLength(8), Validators.minLength(8), Validators.pattern('[0-9]*')])]),
+      curso: new FormControl('', [Validators.required]),
+      montoTotal: new FormControl('')
+    });
     
   }
 
