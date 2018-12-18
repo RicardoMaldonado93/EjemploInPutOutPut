@@ -6,13 +6,15 @@ import { AlumnoComponent } from './shared/alumno/alumno.component';
 import { CursoComponent } from './feature/curso-item/curso-item.component';
 import { ListadoCursoComponent } from './feature/listado-curso/listado-curso.component';
 import { DocenteComponent } from './shared/docente/docente.component';
+import { ListadoAlumnosComponent } from './feature/listado-alumnos/listado-alumnos.component';
 
 const ROUTES: Routes = [
                           { path:"alumno", component: AlumnoComponent},
                           { path:"curso/:id", component: CursoComponent},
                           { path:"cursos", component: ListadoCursoComponent },
                           { path:"docente/:id", component: DocenteComponent},
-                          //{ path: '**', redirectTo: '' },
+                          { path:"listado-alumnos", component:ListadoAlumnosComponent},
+                          { path: '**', redirectTo: '' },
                         ]; 
 
 @NgModule({
