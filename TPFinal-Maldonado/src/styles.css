@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    background: #0d1424 url(../src/app/model/resources/back.JPG)    no-repeat fixed  top  !important;
+	background-position: center !important; 
+	background-size:cover!important; 
+	color: #666;
+}

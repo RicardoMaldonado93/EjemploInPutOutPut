@@ -17,4 +17,5 @@ export interface ICurso {
     profesor: string[];
     laboratorio: number;
     estado: number;
+    precio:number;
 }

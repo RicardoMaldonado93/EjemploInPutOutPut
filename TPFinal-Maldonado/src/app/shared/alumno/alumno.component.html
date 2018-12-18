@@ -2,7 +2,9 @@
   <div class= 'card' style='height:auto; width: 50%;'>
     <div class = 'card-header' ><h2 style="font-size:25px">Alumno</h2></div>
       <div class='card-body' style="font-size:14px;">  
-            <form inscripcion #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <!--Driven Form -->
+           <!-- <form inscripcion #f="ngForm" (ngSubmit)="onSubmit(f)">
+              
               
               <div class="form-row">
                   <div class="form-group col-6">
@@ -98,8 +100,7 @@
                                   <div *ngIf="leg?.errors && leg.errors?.minlength && leg.touched" class="error">
                                       *Se requiere un legajo valido
                                   </div>
-                                  
-
+                            
                               </div>
                             
                         </div>
@@ -110,7 +111,105 @@
                 <div class="form-row mt-5"  >
                   <button style="font-size:15px" type="submit" class="btn btn-primary" [disabled]="f.invalid" >Inscribirse</button>
                 </div>
-                     
+                     -->
+        
+        <form [formGroup]="inscripcion" (ngSubmit)="onSubmit(inscripcion.value)">
+          <div class="form-row">
+            <div class="form-group col-6">
+              <label for="nombre">Nombre</label>
+              <input type="text" class="form-control" name="nombre" placeholder="Nombre" formControlName="nombre">
+              <div *ngIf="inscripcion.get('nombre').errors && inscripcion.get('nombre').touched">
+                  <p class="error"  *ngIf="inscripcion.get('nombre').hasError('required')">*El campo no puede estar vacio</p>
+              </div>
+            </div>
+            <div class="form-group col-6">
+              <label for="apellido">Apellido</label>
+              <input type="text" class="form-control" name="apellido" placeholder="Apellido" formControlName="apellido">
+              <div *ngIf="inscripcion.get('apellido').errors && inscripcion.get('apellido').touched ">
+                  <p class="error"  *ngIf="inscripcion.get('apellido').hasError('required')">*El campo no puede estar vacio</p>
+              </div>
+            </div>
+          </div>
+          
+          
+          <div class="form-row">
+              
+              <div class="form-group col-4">
+                  <label for="TipoDocumento">Tipo Documento</label>
+                  <select class="form-control"  formControlName="tipo_doc">
+                      <option selected>tipo documento...</option>
+                      <option *ngFor="let val of EDocumento">{{val}}</option>
+                  </select>
+                  <div *ngIf="inscripcion.get('tipo_doc').errors && inscripcion.get('tipo_doc').touched">
+                      <p class="error" *ngIf="inscripcion.get('tipo_doc').hasError('required')">*debe seleccionar un campo</p>
+                  </div>
+                </div>
+      
+            <div class="form-group col-4">
+              <label for="nroDocumento">Nro Documento</label>
+              <input type="text" class="form-control" id="nroDocumento" placeholder="Nro documento" formControlName="nro_doc">
+              <div *ngIf="inscripcion.get('nro_doc').errors && inscripcion.get('nro_doc').touched">
+                  <p class="error" *ngIf="inscripcion.get('nro_doc').hasError('required')">*el campo no puede estar vacio</p>
+              </div>
+            </div>
+          
+            <div class="form-group col-4">
+                <label for="fechaNacimiento">Fecha de nacimiento</label>
+                <input type="date" class="form-control" id="fechaNacimiento" value="1999-01-01" formControlName="fecha_nacimiento">
+                <div *ngIf="inscripcion.get('fecha_nacimiento').errors && inscripcion.get('fecha_nacimiento').touched">
+                    <p class="error" *ngIf="inscripcion.get('fecha_nacimiento').hasError('required')">*el campo no puede estar vacio</p>
+                </div>
+              </div>
+          
+            
+            
+          </div>
+      
+          <div class=" form-row"  >
+            
+              <div class="form-group col-6">
+                  <label for="tipoCurso">Inscripcion al curso</label>
+                  <select id="tipoCurso" class="form-control" formControlName="curso">
+                      <option selected>Curso...</option>
+                      <option *ngFor="let curso of ListaCursos">{{curso}}</option>
+                    </select>
+                    <div *ngIf="inscripcion.get('curso').errors && inscripcion.get('curso').touched">
+                        <p class="error" *ngIf="inscripcion.get('curso').hasError('required')">*debe seleccionar un campo</p>
+                    </div>
+                </div>
+                
+          </div>
+          
+          <div class=" form-row">
+            
+              <div class="form-group " >
+                    
+                  <div class='form-inline'>
+                    
+                    <div class="col-auto ">
+                        <div class="custom-control custom-checkbox mt-3  " >
+                          <input type="checkbox" class="custom-control-input  checkbox-primary" id="customControlAutosizing" formControlName="comunidad" (change)="com_utn =! com_utn" >
+                          <label class="custom-control-label" for="customControlAutosizing">¿Comunidad UTN?</label>
+                        </div>
+                      </div>
+
+                      
+                        <div *ngIf="com_utn" class="form-inline mt-3" >
+                            <input type="text" class="form-control" id="nroLegajo" mask="000000-00" style="text-align: center"  placeholder="Nro Legajo"  formControlName="leg_utn" required>
+                            <div *ngIf="inscripcion.get('leg_utn').errors && inscripcion.get('leg_utn').touched ">
+                                <p class="error" *ngIf="inscripcion.get('leg_utn').hasError('required')">*el campo no puede estar vacio</p>
+                            </div>
+                            <div *ngIf="inscripcion.get('leg_utn').errors && inscripcion.get('leg_utn').touched ">
+                                <p class="error" *ngIf="inscripcion.get('leg_utn').hasError('minlength')">*ingrese un legajo valido</p>
+                            </div>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+          <div class="form-row mt-5"  >
+            <button style="font-size:15px" type="submit" class="btn btn-primary" [disabled]="inscripcion.invalid" >Inscribirse</button>
+          </div>
         </form>
       </div>
   </div>

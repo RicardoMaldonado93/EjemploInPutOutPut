@@ -15,6 +15,9 @@ export class AlumnoComponent implements OnInit {
 
   //@Input() unAlumno:IAlumno;
   //alumno : { nombre:string};
+
+  @Output() NuevoAlumno:IAlumno;
+
   submitted:boolean = false;
   com_utn:Boolean = false;
   inscripcion:FormGroup;
@@ -32,11 +35,11 @@ export class AlumnoComponent implements OnInit {
       this.inscripcion = fb.group({
         nombre:[null, Validators.required],
         apellido:[null, Validators.required],
-        tipo_doc:[EnumTipoDocumento[0], Validators.required],
-        nro_doc: [null, Validators.compose([Validators.required, Validators.maxLength(8)])],
+        tipo_doc:[null, Validators.required],
+        nro_doc: [null, Validators.compose([Validators.required, Validators.minLength(8)])],
         fecha_nacimiento :[null, Validators.required],
-        comunidad:[null],
-        leg_utn:[null, Validators.required],
+        comunidad:[this.com_utn],
+        leg_utn:[null,  Validators.compose([Validators.maxLength(8), Validators.minLength(8)])],
         curso:[null, Validators.required],
       })
   }
@@ -49,12 +52,15 @@ export class AlumnoComponent implements OnInit {
 
   get f() { return this.inscripcion.controls; }
 
-  onSubmit({ value, valid }: { value: IAlumno, valid: boolean }){
+  /*onSubmit({ value, valid }: { value: IAlumno, valid: boolean }){
 
     console.log(value, valid);
     
+  }*/
+  onSubmit(value){
+    this.NuevoAlumno = <IAlumno>value;
+    console.log(this.NuevoAlumno);
   }
-
  
 
 }
