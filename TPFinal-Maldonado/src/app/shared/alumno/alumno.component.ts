@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { EnumTipoDocumento } from 'src/app/model/enums/enum-tipo-documento.enum';
 import { CursoService } from 'src/app/core/service/curso.service';
 import { Observable, Subscriber } from 'rxjs';
+import { AlumnoService } from 'src/app/core/service/alumno.service';
 
 
 
@@ -26,8 +27,9 @@ export class AlumnoComponent implements OnInit {
   inscripcion:FormGroup;
   EDocumento : string[];
   ListaCursos:Array<string>;
+  opcionSeleccionada: string;
   
-  constructor( private _route : ActivatedRoute, private fb:FormBuilder, private service: CursoService ) { 
+  constructor( private _route : ActivatedRoute, private fb:FormBuilder, private service: CursoService, private alumnoService : AlumnoService) { 
        
       this.ListaCursos = [];
       this.EDocumento = Object.keys(EnumTipoDocumento);
@@ -83,10 +85,15 @@ export class AlumnoComponent implements OnInit {
         this.NuevoAlumno.montoTotal = Curso.precio - (Curso.precio*0.2);
         console.log( this.NuevoAlumno.montoTotal);
       }   
+      this.alumnoService.AgregarAlumno(this.NuevoAlumno).subscribe(m => console.log(m));
   });
     console.log(this.NuevoAlumno);
 
   }
  
+  capturar(value){
+    this.opcionSeleccionada = value;
+    console.log(this.opcionSeleccionada);
+  }
 
 }

@@ -118,7 +118,10 @@
           <div class="form-row">
             <div class="form-group col-6">
               <label for="nombre">Nombre</label>
-              <input type="text" class="form-control" name="nombre" placeholder="Nombre" formControlName="nombre">
+              <input type="text" class="form-control" name="nombre" placeholder="Nombre" formControlName="nombre" pattern="[a-zA-Z ]*">
+              <div *ngIf="inscripcion.get('nombre').errors && inscripcion.get('nombre').touched">
+                  <p class="error"  *ngIf="inscripcion.get('nombre').hasError('required')">*El campo no puede estar vacio</p>
+              </div>
               <div *ngIf="inscripcion.get('nombre').errors && inscripcion.get('nombre').touched">
                   <p class="error"  *ngIf="inscripcion.get('nombre').hasError('required')">*El campo no puede estar vacio</p>
               </div>
@@ -138,10 +141,12 @@
               
               <div class="form-group col-4">
                   <label for="TipoDocumento">Tipo Documento</label>
-                  <select class="form-control"  formControlName="tipo_doc">
+                  <select class="form-control"  formControlName="tipo_doc" >
                       <option selected>tipo documento...</option>
                       <option *ngFor="let val of EDocumento">{{val}}</option>
                   </select>
+              
+
                   <div *ngIf="inscripcion.get('tipo_doc').errors && inscripcion.get('tipo_doc').touched">
                       <p class="error" *ngIf="inscripcion.get('tipo_doc').hasError('required')">*debe seleccionar un campo</p>
                   </div>
