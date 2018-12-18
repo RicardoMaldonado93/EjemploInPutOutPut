@@ -15,18 +15,21 @@ export class AlumnoComponent implements OnInit {
 
   //@Input() unAlumno:IAlumno;
   //alumno : { nombre:string};
-  formulario:FormGroup;
+  submitted:boolean = false;
+  com_utn:Boolean = false;
+  inscripcion:FormGroup;
   EDocumento : string[];
   ListaCursos:Array<string>;
   
   constructor( private _route : ActivatedRoute, private fb:FormBuilder, private service: CursoService ) { 
        
-    this.ListaCursos = [];
+      this.ListaCursos = [];
       this.EDocumento = Object.keys(EnumTipoDocumento);
       this.EDocumento = this.EDocumento.slice(this.EDocumento.length / 2);
-      //this.ListaCursos.filter( curso => console.log(curso));
 
-      this.formulario = fb.group({
+     // console.log(this.com_utn);
+
+      this.inscripcion = fb.group({
         nombre:[null, Validators.required],
         apellido:[null, Validators.required],
         tipo_doc:[EnumTipoDocumento[0], Validators.required],
@@ -39,18 +42,19 @@ export class AlumnoComponent implements OnInit {
   }
 
   ngOnInit() {
-   /* this.alumno = { nombre : this._route.snapshot.params.nombre};
-    this._route.params.subscribe( (params : Params) =>{ this.alumno.nombre = params.nombre;}  )
-    console.log( this.alumno.nombre);
-    console.log ( this.alumno , this.unAlumno);*/
-    
+
     this.service.getCurso().subscribe( resp => { resp.body.filter( curso => this.ListaCursos.push(curso.titulo));});
-    
     
   }
 
-  onSubmit($value){
-    console.log($value);
+  get f() { return this.inscripcion.controls; }
+
+  onSubmit({ value, valid }: { value: IAlumno, valid: boolean }){
+
+    console.log(value, valid);
+    
   }
+
+ 
 
 }
