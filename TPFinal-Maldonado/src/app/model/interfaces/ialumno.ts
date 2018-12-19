@@ -1,11 +1,12 @@
 export interface IAlumno {
     nombre:string;
     apellido:string;
-    tipo_doc:string;
-    dni:number;
-    fecha_nacimiento:number;
-    curso:string;
-    legajo:number;
+    tipoDocumento:number;
+    documento:number;
+    fechaNacimiento:number;
+    cursos:string[];
+    legajo:string;
+    comunidad:boolean;
     montoTotal:number;
 
 }

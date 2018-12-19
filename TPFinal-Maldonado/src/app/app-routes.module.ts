@@ -7,6 +7,7 @@ import { CursoComponent } from './feature/curso-item/curso-item.component';
 import { ListadoCursoComponent } from './feature/listado-curso/listado-curso.component';
 import { DocenteComponent } from './shared/docente/docente.component';
 import { ListadoAlumnosComponent } from './feature/listado-alumnos/listado-alumnos.component';
+import { AlumnoItemComponent } from './feature/alumno-item/alumno-item.component';
 
 const ROUTES: Routes = [
                           { path:"alumno", component: AlumnoComponent},
@@ -14,6 +15,7 @@ const ROUTES: Routes = [
                           { path:"cursos", component: ListadoCursoComponent },
                           { path:"docente/:id", component: DocenteComponent},
                           { path:"listado-alumnos", component:ListadoAlumnosComponent},
+                          { path:"alumno/:doc", component: AlumnoItemComponent},
                           { path: '**', redirectTo: '' },
                         ]; 
 

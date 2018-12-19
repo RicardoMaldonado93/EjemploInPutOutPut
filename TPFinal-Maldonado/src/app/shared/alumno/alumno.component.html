@@ -158,6 +158,7 @@
               <div *ngIf="inscripcion.get('nro_doc').errors && inscripcion.get('nro_doc').touched">
                   <p class="error" *ngIf="inscripcion.get('nro_doc').hasError('required')">*el campo no puede estar vacio</p>
               </div>
+            
             </div>
           
             <div class="form-group col-4">
@@ -176,9 +177,9 @@
             
               <div class="form-group col-6">
                   <label for="tipoCurso">Inscripcion al curso</label>
-                  <select id="tipoCurso" class="form-control" formControlName="curso">
+                  <select id="tipoCurso" class="form-control" formControlName="curso" (change)="AgregarCurso($event.target.value)">
                       <option selected>Curso...</option>
-                      <option *ngFor="let curso of ListaCursos">{{curso}}</option>
+                      <option *ngFor="let curso of ListaCursos" >{{curso}}</option>
                     </select>
                     <div *ngIf="inscripcion.get('curso').errors && inscripcion.get('curso').touched">
                         <p class="error" *ngIf="inscripcion.get('curso').hasError('required')">*debe seleccionar un campo</p>

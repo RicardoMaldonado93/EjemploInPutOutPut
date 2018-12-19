@@ -23,4 +23,8 @@ export class AlumnoService {
 
     return this.http.get(this.url2,{observe:'response'});
   }
+
+  getUnAlumno(param:number):Observable<HttpResponse<IAlumno[]>>{
+    return this.http.get<IAlumno[]>(this.url2, { observe : 'response'});
+  }
 }

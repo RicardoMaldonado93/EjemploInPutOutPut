@@ -10,12 +10,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ListadoAlumnosComponent implements OnInit {
 
   listaAlumnos=[];
+  leg:string;
   cargada: boolean = false;
 
-  constructor(private route: ActivatedRoute, private r:Router, private service: AlumnoService) { }
+  constructor(private route: ActivatedRoute, private r:Router, private service: AlumnoService) { 
+       
+  }
 
   ngOnInit() {
-    this.service.AlumnosInscriptos().subscribe(resp=>{ this.listaAlumnos = resp.body; if(this.listaAlumnos.length > 0){this.cargada = true}});
+    this.service.AlumnosInscriptos().subscribe(resp=>{ this.listaAlumnos = resp.body; if(this.listaAlumnos.length > 0){this.cargada = true}; console.log( resp.body)});
   }
 
 }

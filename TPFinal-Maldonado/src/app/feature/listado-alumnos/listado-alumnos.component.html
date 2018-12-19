@@ -7,7 +7,7 @@
               </div>
               <div *ngIf="cargada">
                  <li *ngFor="let alumno of listaAlumnos">
-                  <a [routerLink]= "">{{alumno.nombre}} {{alumno.apellido}} </a>
+                  <a [routerLink]= "['/alumno', alumno.documento]">{{alumno.nombre}} {{alumno.apellido}}</a>
                 </li>
               </div>
             </div>

@@ -20,6 +20,7 @@ export class CursoComponent implements ICurso{
   profesor: string[];
   laboratorio: number;
   estado: number;
+  precio : number;
 
   @Input() unCurso : ICurso;
   @Output() actualizarEstado : EventEmitter<EnumEstado> = new EventEmitter<EnumEstado>();
@@ -39,7 +40,7 @@ export class CursoComponent implements ICurso{
       profesor: [],
       laboratorio: 0,
       estado: 0,
-    
+      precio: 0,
     }
      
       this.ActivatedRoute.paramMap.subscribe( params => {

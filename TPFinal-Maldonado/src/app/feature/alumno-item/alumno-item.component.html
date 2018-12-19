@@ -1,0 +1,24 @@
+<div class=" col-xl-12 row ">
+    <div class=" col-xl-6 ">
+      <div class=' card ' style=" height : auto ; ">
+        <h2 class="card-header"> Legajo: {{unAlumno.legajo}}  </h2>
+        <div class='card-body' style=" font-size : 15px ">
+
+          <li> Nombre: {{unAlumno.nombre}} </li>
+          <li> Apellido: {{unAlumno.apellido}} </li>
+          <li> Tipo Documento: {{unAlumno.tipoDocumento}} </li>
+          <li> Documento: {{unAlumno.documento }} </li>
+          <li> Fecha de nacimiento: {{unAlumno.fechaNacimiento | date}} </li>
+          <li> Comunidad: {{unAlumno.comunidad}}</li>
+          <li> Cursos:  <span *ngFor="let a of unAlumno.cursos"><li> {{a}} </li> </span></li>
+          <li> Total a Pagar: {{unAlumno.montoTotal}} </li>
+          
+    
+
+        </div>
+      </div>
+    </div>
+
+    
+   
+</div>

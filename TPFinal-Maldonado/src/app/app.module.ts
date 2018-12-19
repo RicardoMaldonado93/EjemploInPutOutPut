@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {NgxMaskModule} from 'ngx-mask';
 import { ListadoAlumnosComponent } from './feature/listado-alumnos/listado-alumnos.component';
+import { AlumnoItemComponent } from './feature/alumno-item/alumno-item.component';
 
 
 
@@ -24,7 +25,8 @@ import { ListadoAlumnosComponent } from './feature/listado-alumnos/listado-alumn
     DocenteComponent,
     CursoComponent,
     MenuComponent,
-    ListadoAlumnosComponent
+    ListadoAlumnosComponent,
+    AlumnoItemComponent
   ],
   imports: [
     BrowserModule,
