@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { IAlumno } from 'src/app/model/interfaces/ialumno';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlumnoService } from 'src/app/core/service/alumno.service';
+import { CursoService } from 'src/app/core/service/curso.service';
+import { ICurso } from 'src/app/model/interfaces/icurso';
 
 
 @Component({
@@ -11,19 +13,13 @@ import { AlumnoService } from 'src/app/core/service/alumno.service';
 })
 export class AlumnoItemComponent implements OnInit {
 
-    nombre:string;
-    apellido:string;
-    tipoDocumento:string;
-    documento:number;
-    fechaNacimiento:number;
-    cursos:string[];
-    legajo:string;
-    comunidad:boolean;
-    montoTotal:number;
-
+    
+    unCurso:ICurso;
+    Lcursos:string[] = [];
+    
   @Input() unAlumno : IAlumno;
   
-  constructor ( private ActivatedRoute: ActivatedRoute, private servicio: AlumnoService, private route : Router){}
+  constructor ( private ActivatedRoute: ActivatedRoute, private servicio: AlumnoService, private cursoService:CursoService, private route : Router){}
 
   
   ngOnInit(){
@@ -42,7 +38,15 @@ export class AlumnoItemComponent implements OnInit {
       this.ActivatedRoute.paramMap.subscribe( params => {
          let doc = +params.get('doc');
          console.log(doc);
-         this.servicio.getUnAlumno(doc).subscribe(data => { this.unAlumno = data.body.find( a => a.documento == doc )} );
+         this.servicio.getUnAlumno(doc).subscribe(data => { 
+          this.unAlumno = data.body.find( a => a.documento == doc );
+  
+         for(let i=0; i< this.unAlumno.cursos.length; i++) {
+            let id = Number(this.unAlumno.cursos[i]);
+            this.cursoService.getUnCurso( id ).subscribe(data => { this.unCurso = data.body.find( a => a.id == id), this.Lcursos.push(this.unCurso.titulo), console.log(this.unCurso),
+            this.unAlumno.cursos = this.Lcursos,
+            console.log(this.Lcursos)}); 
+        };
         
       })
 
