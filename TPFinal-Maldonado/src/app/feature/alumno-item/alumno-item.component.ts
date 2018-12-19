@@ -37,14 +37,21 @@ export class AlumnoItemComponent implements OnInit {
      
       this.ActivatedRoute.paramMap.subscribe( params => {
          let doc = +params.get('doc');
-         console.log(doc);
+  
          this.servicio.getUnAlumno(doc).subscribe(data => { 
           this.unAlumno = data.body.find( a => a.documento == doc );
-  
+          let monto = 0;
+
          for(let i=0; i< this.unAlumno.cursos.length; i++) {
             let id = Number(this.unAlumno.cursos[i]);
             this.cursoService.getUnCurso( id ).subscribe(data => { this.unCurso = data.body.find( a => a.id == id), this.Lcursos.push(this.unCurso.titulo), console.log(this.unCurso),
-            this.unAlumno.cursos = this.Lcursos,
+            this.unAlumno.cursos = this.Lcursos;
+            if(this.unAlumno.comunidad == true){
+              monto += this.unCurso.precio - this.unCurso.precio*0.2;
+            }
+            else
+              monto += this.unCurso.precio;
+            this.unAlumno.montoTotal = monto;
             console.log(this.Lcursos)}); 
         };
         
