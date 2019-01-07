@@ -90,7 +90,7 @@ export class AlumnoComponent implements OnInit {
         this.NuevoAlumno.montoTotal = Curso.precio;
       
       console.log(this.NuevoAlumno);
-      this.alumnoService.AgregarAlumno(this.NuevoAlumno).subscribe(m => console.log(m));
+      this.alumnoService.AgregarAlumno(this.NuevoAlumno).subscribe(m => { console.log(m); if(m[status] == "realizado"){this.alumnoService.Alumnos.push(this.NuevoAlumno)}});
 
      });
     

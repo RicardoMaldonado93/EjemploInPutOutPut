@@ -18,7 +18,7 @@ export class ListadoAlumnosComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.AlumnosInscriptos().subscribe(resp=>{ this.listaAlumnos = resp.body; if(this.listaAlumnos.length > 0){this.cargada = true}; console.log( resp.body)});
+   this.service.AlumnosInscriptos().subscribe(resp=>{ this.listaAlumnos = resp.body; if(this.listaAlumnos.length > 0){this.cargada = true}; console.log( resp.body)});
   }
 
 }

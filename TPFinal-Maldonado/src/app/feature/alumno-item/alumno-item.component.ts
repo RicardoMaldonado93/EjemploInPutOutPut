@@ -16,7 +16,7 @@ export class AlumnoItemComponent implements OnInit {
     
     unCurso:ICurso;
     Lcursos:string[] = [];
-    
+  @Input() td:string;
   @Input() unAlumno : IAlumno;
   
   constructor ( private ActivatedRoute: ActivatedRoute, private servicio: AlumnoService, private cursoService:CursoService, private route : Router){}
@@ -52,11 +52,19 @@ export class AlumnoItemComponent implements OnInit {
             else
               monto += this.unCurso.precio;
             this.unAlumno.montoTotal = monto;
+
+
+            switch(this.unAlumno.tipoDocumento.toString()){
+              case '0': { this.td = "DNI"; break}
+              case '1': { this.td = "LE"; break}
+              default: {this.td = "ASDASDasd"; break}
+            }
             console.log(this.Lcursos)}); 
         };
         
-      })
+      });
 
-  }
+  });
 
+}
 }

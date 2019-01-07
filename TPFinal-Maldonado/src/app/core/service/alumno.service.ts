@@ -11,8 +11,12 @@ export class AlumnoService {
 
   private url:string = 'http://demo3744158.mockable.io/alumno'; 
   private url2:string = 'http://demo3744158.mockable.io/alumnos'; 
+  public Alumnos: IAlumno[];
 
-  constructor( private http : HttpClient) { }
+  constructor( private http : HttpClient) {
+
+    this.AlumnosInscriptos().subscribe(resp => this.Alumnos = resp.body);
+   }
 
   AgregarAlumno(alumno):Observable<any>{
 
