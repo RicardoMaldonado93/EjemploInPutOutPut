@@ -1,7 +1,7 @@
 export enum EnumTipoDocumento {
-    LE = 0,
-    LC ,
-    DNI,
-    Pasaporte ,
-    CI = 4 ,
+    LE = 1 ,
+    LC = 2,
+    DNI = 0,
+    Pasaporte = 4,
+    CI = 3 ,
 }

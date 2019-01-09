@@ -16,6 +16,7 @@ const ROUTES: Routes = [
                           { path:"docente/:id", component: DocenteComponent},
                           { path:"listado-alumnos", component:ListadoAlumnosComponent},
                           { path:"alumno/:doc", component: AlumnoItemComponent},
+                          { path:"editar/:doc", component:AlumnoComponent },
                           { path: '**', redirectTo: '' },
                         ]; 
 

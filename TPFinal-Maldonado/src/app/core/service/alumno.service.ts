@@ -23,6 +23,10 @@ export class AlumnoService {
     return this.http.post<IAlumno>(this.url, alumno).pipe(catchError(error =>of("ERROR:{$error}")));
   }
 
+  ModificarAlumno(alumno):Observable<any>{
+    return this.http.put<IAlumno>(this.url, alumno).pipe(catchError(error=>of("ERROR:{$error}")));
+  }
+
   AlumnosInscriptos():Observable<HttpResponse<any>>{
 
     return this.http.get(this.url2,{observe:'response'});

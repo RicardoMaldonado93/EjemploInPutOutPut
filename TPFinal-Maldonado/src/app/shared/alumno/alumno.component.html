@@ -122,9 +122,6 @@
               <div *ngIf="inscripcion.get('nombre').errors && inscripcion.get('nombre').touched">
                   <p class="error"  *ngIf="inscripcion.get('nombre').hasError('required')">*El campo no puede estar vacio</p>
               </div>
-              <div *ngIf="inscripcion.get('nombre').errors && inscripcion.get('nombre').touched">
-                  <p class="error"  *ngIf="inscripcion.get('nombre').hasError('required')">*El campo no puede estar vacio</p>
-              </div>
             </div>
 
             <div class="form-group col-6">
@@ -142,7 +139,7 @@
               <div class="form-group col-4">
                   <label for="TipoDocumento">Tipo Documento</label>
                   <select class="form-control"  formControlName="tipo_doc" >
-                      <option selected>tipo documento...</option>
+                      <option selected value='-1'>tipo documento...</option>
                       <option *ngFor="let val of EDocumento">{{val}}</option>
                   </select>
               
@@ -178,7 +175,7 @@
               <div class="form-group col-6">
                   <label for="tipoCurso">Inscripcion al curso</label>
                   <select id="tipoCurso" class="form-control" formControlName="curso" (change)="AgregarCurso($event.target.value)">
-                      <option selected>Curso...</option>
+                      <option selected value='-1'>Curso...</option>
                       <option *ngFor="let curso of ListaCursos" >{{curso}}</option>
                     </select>
                     <div *ngIf="inscripcion.get('curso').errors && inscripcion.get('curso').touched">
@@ -216,8 +213,9 @@
 
           </div>
           <div class="form-row mt-5"  >
-            <button style="font-size:15px" type="submit" class="btn btn-primary" [disabled]="inscripcion.invalid" >Inscribirse</button>
-          </div>
+            <button *ngIf ="!edicion" style="font-size:15px" type="submit" class="btn btn-primary" [disabled]="inscripcion.invalid" >Inscribirse</button>
+            <button *ngIf ="edicion" style="font-size:15px" type="submit" class="btn btn-primary" >Modificar</button>
+        </div>
         </form>
       </div>
   </div>
