@@ -15,7 +15,7 @@
         <div class="card-footer" style=" font-size : 15px ">
           <div class="col">
             <button [routerLink]="['/editar', unAlumno.documento]">Modificar</button>
-              <button>Eliminar</button>
+            <button (click)='eliminar(unAlumno.documento)'>Eliminar</button>
       
           </div>
          

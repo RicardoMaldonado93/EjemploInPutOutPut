@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AlumnoService } from 'src/app/core/service/alumno.service';
 import { CursoService } from 'src/app/core/service/curso.service';
 import { ICurso } from 'src/app/model/interfaces/icurso';
+import { Alert } from 'selenium-webdriver';
+import { WebdriverWebElement } from 'protractor/built/element';
 
 
 @Component({
@@ -65,6 +67,14 @@ export class AlumnoItemComponent implements OnInit {
       });
 
   });
-
 }
+
+  eliminar( unAlumno: IAlumno){
+
+    let r = confirm("Desea eliminar el registro?");
+    if(r)
+      this.servicio.EliminarAlumno(unAlumno).subscribe( m => alert(m.msg));
+    else
+      alert("no se elimino");
+  }
 }

@@ -27,6 +27,10 @@ export class AlumnoService {
     return this.http.put<IAlumno>(this.url, alumno).pipe(catchError(error=>of("ERROR:{$error}")));
   }
 
+  EliminarAlumno(alumno):Observable<any>{
+    return this.http.delete<IAlumno>(this.url, alumno).pipe(catchError(error=>of("ERROR:{$error}")));
+  }
+
   AlumnosInscriptos():Observable<HttpResponse<any>>{
 
     return this.http.get(this.url2,{observe:'response'});
